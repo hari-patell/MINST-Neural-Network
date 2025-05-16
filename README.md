@@ -2,6 +2,30 @@
 
 This project implements a simple feedforward neural network from scratch using NumPy to classify handwritten digits from the MNIST dataset.
 
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/MINST-Neural-Network.git
+   cd MINST-Neural-Network
+   ```
+
+2. Create and activate a virtual environment (optional but recommended):
+   ```bash
+   # On macOS/Linux
+   python -m venv venv
+   source venv/bin/activate
+   
+   # On Windows
+   python -m venv venv
+   venv\Scripts\activate
+   ```
+
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
 ## What is MNIST?
 
 MNIST is a dataset of 70,000 handwritten digits (0-9), each represented as a 28x28 pixel grayscale image. It's a standard benchmark dataset in machine learning.
@@ -103,19 +127,13 @@ The code generates a visualization of 10 test examples, showing the original ima
 
 ## Running the Code
 
-To run this neural network:
-
+To run the neural network:
 ```bash
 python main.py
 ```
 
-You'll see progress updates for each epoch and a final accuracy score. A visualization of sample predictions will be saved as 'predictions.png'.
-
-## Extending the Project
-
-Ideas for improvement:
-- Add more hidden layers
-- Try different activation functions (ReLU, tanh)
-- Implement dropout for regularization
-- Use cross-entropy loss instead of MSE
-- Add momentum to the optimizer 
+The script will:
+1. Download the MNIST dataset (if not already downloaded)
+2. Train the neural network for 15 epochs
+3. Evaluate the model on the test set
+4. Generate and save a visualization of sample predictions as 'predictions.png'

@@ -21,6 +21,10 @@ def one_hot(y, num_classes=10):
     # Convert digit labels (0-9) to one-hot encoded vectors
     # Example: 5 -> [0,0,0,0,0,1,0,0,0,0]
     oh = np.zeros((y.size, num_classes))
+    # Set 1s at specific positions using array indexing:
+    # np.arange(y.size) creates row indices [0,1,2,...,len(y)-1]
+    # y.astype(int) provides the column indices based on label values
+    # Together they form coordinate pairs (row,col) where 1s should be placed
     oh[np.arange(y.size), y.astype(int)] = 1
     return oh
 
@@ -31,16 +35,19 @@ print("Loading MNIST dataset...")
 X, y = fetch_openml('mnist_784', version=1, return_X_y=True, parser='auto')
 
 # Convert pandas to numpy
-X = X.to_numpy()
-y = y.to_numpy().astype(int)
+X = X.to_numpy() # This holds the pixels, 2 dimensional array, 784 pixels
+y = y.to_numpy().astype(int) # This holds the labels
 
 # Normalize pixel values from [0,255] to [0,1]
 # This helps with training stability and convergence
-X = X / 255.0
+X = X / 255.0 #So the pixel values are between 0 and 1
 
 # Split into train and test sets (60,000 training, 10,000 test)
-x_train, x_test, y_train, y_test = train_test_split(
-    X, y, test_size=10000, random_state=42)
+x_train, x_test, y_train, y_test = train_test_split(X, y, test_size=10000, random_state=42)
+#x_train holds the images for training
+#x_test holds the images for testing
+#y_train holds the labels for training, labels are the actual digits
+#y_test holds the labels for testing, labels are the actual digits
 
 # Convert labels to one-hot encoding for training
 y_train_oh = one_hot(y_train)
